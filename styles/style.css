@@ -1,0 +1,25 @@
+:root {
+	--footer-height: 156px;
+	font-size: 18px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	list-style-type: none;
+}
+
+html, body {
+	height: 100%;
+}
+
+.main-wrap {
+	height: calc(100% - var(--footer-height));
+}
+
+.main-footer {
+	height: var(--footer-height);
+}

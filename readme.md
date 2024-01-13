@@ -1,0 +1,1 @@
+Barebone framework for building simple homepage site with vanilla NodeJs backend service and native Js client-side renderer
