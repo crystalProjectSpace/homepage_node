@@ -72,6 +72,6 @@ const requestHandler = (request, response) => {
 }
 
 const myServer = http.createServer(requestHandler)
-console.log(`test server run on port[${PORT_USED}]`)
+console.log(`test server run on port[${DEFAULT_PORT}]`)
 
-myServer.listen(PORT_USED)
+myServer.listen(DEFAULT_PORT)
