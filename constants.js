@@ -1,9 +1,9 @@
 'use strict'
 
 module.exports = {
-	DEFAULT_PORT: 3500,
+	DEFAULT_PORT: 3000,
 	API_PREFIX: 'api',
-	CACHE_EXPIRATION: 5000,//3.6E6,
+	CACHE_EXPIRATION: 3.6E6,
 	UTF8: 'utf8',
 	STATUS: {
 		CACHED: 'cached',
