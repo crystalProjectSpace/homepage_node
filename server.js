@@ -3,7 +3,7 @@
 const http = require('http')
 const LoadManager = require('./load_manager.js')
 
-const { DEFAULT_PORT, MIME_TYPES, CODE, STATUS, UTF8, API_PREFIX } = require('./constants.js')
+const { DEFAULT_PORT, MIME_TYPES, CODE, STATUS, UTF8, API_PREFIX, PATH } = require('./constants.js')
 
 const testFM = new LoadManager()
 
@@ -12,7 +12,7 @@ const testFM = new LoadManager()
 */
 const fileRespond = async function(response, path, contentType = MIME_TYPES.html) {
 	const { content, status } = await testFM.getFile(path, true)
-	
+
 	switch(status) {
 		case STATUS.LOAD:
 		case STATUS.CACHED: {
@@ -32,7 +32,8 @@ const fileRespond = async function(response, path, contentType = MIME_TYPES.html
 */
 const fileHandler = function(url, response) {
 	if (url === '/') {
-        const filePath = '/index.html'
+        const filePath = `${PATH.PAGE}/index.html`
+		console.log(filePath)
         fileRespond(response, filePath)
 		return
 	}

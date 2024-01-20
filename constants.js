@@ -3,7 +3,7 @@
 module.exports = {
 	DEFAULT_PORT: 3000,
 	API_PREFIX: 'api',
-	CACHE_EXPIRATION: 3.6E6,
+	CACHE_EXPIRATION: 1000,//3.6E6,
 	UTF8: 'utf8',
 	STATUS: {
 		CACHED: 'cached',
@@ -30,5 +30,10 @@ module.exports = {
 		SUCCESS: 200,
 		INNER_ERR: 500,
 		NOT_FOUND: 404,
-	}
+	},
+    PATH: {
+        PAGE: '/pages',
+        STYLE: '/styles',
+        SCRIPT_CLIENT: '/script_client',
+    },
 }
