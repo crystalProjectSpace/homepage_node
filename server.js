@@ -9,16 +9,19 @@ const testFM = new LoadManager()
 
 /**
 * @description получение и кэширование запрашиваемых файлов, при необходимости - обработка ошибок
+* @todo rewrite using https://stackoverflow.com/questions/5823722/how-to-serve-an-image-using-nodejs
+* @warning file-write couldn't serve binaries
 */
+
 const fileRespond = async function(response, path, contentType = MIME_TYPES.html) {
 	console.log(path);
 	const { content, status } = await testFM.getFile(path, true)
-	
+	const isImg = [MIME_TYPES.png, MIME_TYPES.jpg, MIME_TYPES.gif].includes(contentType);
 	switch(status) {
 		case STATUS.LOAD:
 		case STATUS.CACHED: {
 			response.writeHead(CODE.SUCCESS, { 'Content-type': contentType })
-			response.end(content, UTF8)
+			response.end(content, UTF8 )
 			return	
 		}
 		case 'ENOENT': {

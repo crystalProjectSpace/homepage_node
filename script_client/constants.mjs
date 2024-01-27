@@ -12,6 +12,6 @@ export const RENDER_CONSTANTS = {
     },
     
     HTMLS: {
-        GALLERY_CLOSE: '<span class="gallery-ctrls"><button type="button" class="gallery-ctrls___backward">&lt;&lt;&lt;</button><button type="button" class="gallery-ctrls___forward">&gt;&gt;&gt;</button></span></span>',
+        GALLERY_CLOSE: '<span class="gallery-ctrls"><button type="button" class="gallery-ctrls-btn _backward"></button><button type="button" class="gallery-ctrls-btn _forward"></button></span></span>',
     },
 }

@@ -43,16 +43,16 @@ const imageProcess = function(paragraph) {
 	const imgCount = images?.length ?? 0
     if(imgCount) {
         for(let i = 0; i < imgCount; i++) {
-            const imgIds = images[i].slice(5, -1).split(/\s*\,\s*/)
+            const imgIds = images[i].slice(6, -1).split(/\s*\,\s*/)
             let _image = ''
             if (imgIds.length > 1) {
                 _image += '<span class="gallery">'
                 imgIds.forEach(ID => {
-                    _image +=  `<img src="/assets/images/${ID}" />`
+                    _image +=  `<img class="_gallery-img" src="/data/imgs/${ID}" />`
                 })
                 _image += GALLERY_CLOSE
             } else {
-                _image = `<img src="/assets/images/${imgIds[0]}" />`
+                _image = `<img class="_img" src="/data/imgs/${imgIds[0]}" />`
             }
             result = result.replace(images[i], _image)
         }

@@ -18,6 +18,12 @@
 	--list-gap-y: 32px;
 	--sidebar-width: 240px;
 
+	--gallery-width: calc(100% - 48px);
+	--gallery-height: 480px;
+
+	--ctrl-btn-size: 24px;
+	--gallery-border-width: 8px;
+	
 	cursor: url(../assets/cursor.svg), auto;
 }
 
@@ -235,4 +241,75 @@ body {
 	padding: 40px;
 	text-align: right;
 	text-transform: capitalize;
+}
+
+.gallery {
+	overflow-x: auto;
+	margin: 24px auto;
+	position: relative;
+	background-color: #000;
+	padding: 8px;
+	border-image: linear-gradient(0deg, var(--bg-cl-lighter), var(--txt-cl-active));
+	border-image-width: var(--gallery-border-width);
+	border-image-slice: 4;
+	display: flex;
+	align-items: center;
+	width: var(--gallery-width);
+	height: var(--gallery-height);
+	box-shadow: 0 0 0 1px var(--txt-cl-active), inset 0 0 0 9px var(--txt-cl-active);
+
+	scrollbar-color: transparent transparent;
+	scrollbar-width: none;
+}
+
+.gallery-ctrls {
+	display: flex;
+	justify-content: space-between;
+	width: calc(100% - calc(2 * var(--gallery-border-width)) - 24px);
+	position: absolute;
+	left: calc(var(--gallery-border-width) + 12px);
+	top: calc(0.5*calc(100% - var(--ctrl-btn-size)));
+}
+
+.gallery::-webkit-scrollbar {
+	display: none;
+}
+
+.gallery-ctrls-btn {
+	display: block;
+	background-color: transparent;
+	border-top: 2px solid var(--txt-cl-link);
+	border-right: 2px solid var(--txt-cl-link);
+	width: var(--ctrl-btn-size);
+	height: var(--ctrl-btn-size);
+	transform-origin: 50% 50%;
+	filter: drop-shadow(-8px 8px 0 var(--txt-cl-link));
+}
+
+.gallery-ctrls-btn._forward {
+	transform: rotate(45deg);
+}
+
+.gallery-ctrls-btn._backward {
+	transform: rotate(225deg);
+}
+
+._gallery-img {
+	display: block;
+	width: calc(100% - 16px);
+	min-width: calc(100% - 16px);
+	height: 400px;
+	border: 1px solid var(--txt-cl-link);
+}
+
+._img {
+	margin: 24px auto;
+	background-color: #000;
+	border-image: linear-gradient(0deg, var(--bg-cl-lighter), var(--txt-cl-active));
+	border-image-width: var(--gallery-border-width);
+	border-image-slice: 4;
+	display: block;
+	width: var(--gallery-width);
+	height: var(--gallery-height);
+	box-shadow: 0 0 0 1px var(--txt-cl-active), inset 0 0 0 9px var(--txt-cl-active);
 }
