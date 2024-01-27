@@ -12,6 +12,7 @@ module.exports = {
 	MIME_TYPES: {
         html: 'text/html',
         js: 'text/javascript',
+        mjs: 'text/javascript',
         css: 'text/css',
         json: 'application/json',
         png: 'image/png',
@@ -25,6 +26,7 @@ module.exports = {
         eot: 'application/vnd.ms-fontobject',
         otf: 'application/font-otf',
         wasm: 'application/wasm',
+        ico: 'image/x-icon',
     },
 	CODE: {
 		SUCCESS: 200,
@@ -36,4 +38,6 @@ module.exports = {
         STYLE: '/styles',
         SCRIPT_CLIENT: '/script_client',
     },
+    GET: 'GET',
+    POST: 'POST',
 }

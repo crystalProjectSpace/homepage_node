@@ -1,0 +1,13 @@
+<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="bg-grad" gradientTransform="rotate(45)">
+			<stop offset="40%" stop-color=" #0dbeff" /><!-- #0aabf0 -->
+			<stop offset="100%" stop-color="#0360a1" /><!-- #0360a1 -->
+		</linearGradient>
+	</defs>
+	<polygon points="0,12 12,24 24,12 12,0" fill="url('#bg-grad')" stroke="#000" stroke-width="2"/>
+	<line x1="1" y1="12" x2="23" y2="12" stroke="#000" stroke-width="2"/>
+	<line x1="12" y1="1" x2="12" y2="23" stroke="#000" stroke-width="2"/>
+	<circle cx="12" cy="12" r="5" fill="#000" />
+	<circle cx="12" cy="12" r="3" fill="#0beeff" />
+</svg>

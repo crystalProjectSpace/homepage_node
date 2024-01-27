@@ -1,9 +1,9 @@
 'use strict'
 
 const http = require('http')
-const LoadManager = require('./load_manager.js')
+const LoadManager = require('./ssr/load_manager.js')
 
-const { DEFAULT_PORT, MIME_TYPES, CODE, STATUS, UTF8, API_PREFIX, PATH } = require('./constants.js')
+const { DEFAULT_PORT, MIME_TYPES, CODE, STATUS, UTF8, API_PREFIX, PATH, GET, POST } = require('./ssr/constants.js')
 
 const testFM = new LoadManager()
 
@@ -11,8 +11,9 @@ const testFM = new LoadManager()
 * @description получение и кэширование запрашиваемых файлов, при необходимости - обработка ошибок
 */
 const fileRespond = async function(response, path, contentType = MIME_TYPES.html) {
+	console.log(path);
 	const { content, status } = await testFM.getFile(path, true)
-
+	
 	switch(status) {
 		case STATUS.LOAD:
 		case STATUS.CACHED: {
@@ -39,7 +40,8 @@ const fileHandler = function(url, response) {
 	}
 	
 	const extName = url.split('.').pop().toString()
-	const mimeType = MIME_TYPES[extName]	
+	const mimeType = MIME_TYPES[extName]
+	console.log('mimeType', mimeType)
 	fileRespond(response, url, mimeType)
 }
 /**

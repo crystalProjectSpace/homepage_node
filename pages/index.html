@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="/styles/style.css" />
+		<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+		<title>Crystall-Project test area</title>
+		<script src="./script_client/renderer.mjs" type="module"></script>
+		<script src="./script_client/constants.mjs" type="module"></script>
+		<script src="./script_client/mockup.mjs" type="module"></script>
 	</head>
 	<body>
 		<div class="main-wrap">
@@ -32,50 +37,7 @@
 							</div>
 						</div>
 					</aside>
-					<div class="main-content__list">
-						<section class="main-content__list-item">
-							<h3 class="main-content__list_item-header">Искусственная жизнь</h3>
-							<div class="main-content__list-item-text">
-								Есть множество приемов для имитации жизни, но многие из них начинают с имитации отдельных компонентов и законов взаимодействия между ними. Достаточно, чтобы каждая клетка знала, что происходит с ее соседями, в каком она находится состоянии, в каком состоянии находилась в предыдущий момент времени и по какому набору правил может измениться в следующий момент.
-							</div>
-							<div class="main-content__list-item-meta">
-								<div class="main-content__list-item-meta__tags">
-									<span class="main-content__list-item-meta__tag">Conway lives</span>
-									<span class="main-content__list-item-meta__tag">Digital Life Club</span>
-									<span class="main-content__list-item-meta__tag">010100111</span>
-									<span class="main-content__list-item-meta__tag">Glider</span>
-								</div>
-							</div>
-						</section>
-						<section class="main-content__list-item">
-							<h3 class="main-content__list_item-header">Искусственная жизнь</h3>
-							<div class="main-content__list-item-text">
-								Есть множество приемов для имитации жизни, но многие из них начинают с имитации отдельных компонентов и законов взаимодействия между ними. Достаточно, чтобы каждая клетка знала, что происходит с ее соседями, в каком она находится состоянии, в каком состоянии находилась в предыдущий момент времени и по какому набору правил может измениться в следующий момент.
-							</div>
-							<div class="main-content__list-item-meta">
-								<div class="main-content__list-item-meta__tags">
-									<span class="main-content__list-item-meta__tag">Conway lives</span>
-									<span class="main-content__list-item-meta__tag">Digital Life Club</span>
-									<span class="main-content__list-item-meta__tag">010100111</span>
-									<span class="main-content__list-item-meta__tag">Glider</span>
-								</div>
-							</div>
-						</section>
-						<section class="main-content__list-item">
-							<h3 class="main-content__list_item-header">Искусственная жизнь</h3>
-							<div class="main-content__list-item-text">
-								Есть множество приемов для имитации жизни, но многие из них начинают с имитации отдельных компонентов и законов взаимодействия между ними. Достаточно, чтобы каждая клетка знала, что происходит с ее соседями, в каком она находится состоянии, в каком состоянии находилась в предыдущий момент времени и по какому набору правил может измениться в следующий момент.
-							</div>
-							<div class="main-content__list-item-meta">
-								<div class="main-content__list-item-meta__tags">
-									<span class="main-content__list-item-meta__tag">Conway lives</span>
-									<span class="main-content__list-item-meta__tag">Digital Life Club</span>
-									<span class="main-content__list-item-meta__tag">010100111</span>
-									<span class="main-content__list-item-meta__tag">Glider</span>
-								</div>
-							</div>
-						</section>
-					</div>
+					<div class="main-content__list" id="content-preview-list"></div>
 					<div class="main-content__pagination">
 						<button class="main-content__pagination-btn _forward" type="button"></button>
 						<button class="main-content__pagination-btn _backward" type="button"></button>
@@ -86,5 +48,18 @@
 		<footer class="main-footer">
 			test-mode NodeJs homepage
 		</footer>
+		<script type="module">
+			'use strict'
+			import { createPreview } from './script_client/renderer.mjs'
+			import { MOCKUP_ARTICLES } from './script_client/mockup.mjs'
+			{
+				document.addEventListener('DOMContentLoaded', () => {
+					const previewSocket = document.getElementById('content-preview-list')
+					let temp = ''
+					MOCKUP_ARTICLES.forEach(item => { temp += createPreview(item) })
+					previewSocket.innerHTML = temp
+				})
+			}
+		</script>
 	</body>
 </html>

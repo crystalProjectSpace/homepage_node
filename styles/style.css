@@ -17,6 +17,8 @@
 	--list-gap-x: 32px;
 	--list-gap-y: 32px;
 	--sidebar-width: 240px;
+
+	cursor: url(../assets/cursor.svg), auto;
 }
 
 * {
@@ -114,6 +116,14 @@ body {
 	row-gap: 32px;
 	border-left: 1px solid var(--txt-cl-active);
 	padding: 0 var(--list-gap-x) var(--list-gap-y);
+	max-height: calc(100vh - 275px);
+
+	scrollbar-width: none;
+	scrollbar-color: transparent transparent;
+}
+
+.main-content__list::-webkit-scrollbar {
+	display: none;
 }
 
 .main-content__list-item {
