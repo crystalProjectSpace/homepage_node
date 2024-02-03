@@ -14,4 +14,7 @@ export const RENDER_CONSTANTS = {
     HTMLS: {
         GALLERY_CLOSE: '<span class="gallery-ctrls"><button type="button" class="gallery-ctrls-btn _backward"></button><button type="button" class="gallery-ctrls-btn _forward"></button></span></span>',
     },
+    WORDING: {
+        READ_MORE: 'Читать целиком &gt;&gt;&gt;'
+    }
 }

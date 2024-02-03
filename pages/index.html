@@ -56,7 +56,7 @@
 				document.addEventListener('DOMContentLoaded', () => {
 					const previewSocket = document.getElementById('content-preview-list')
 					let temp = ''
-					MOCKUP_ARTICLES.forEach(item => { temp += createPreview(item) })
+					MOCKUP_ARTICLES.forEach(item => { temp += createPreview(item, true) })
 					previewSocket.innerHTML = temp
 				})
 			}

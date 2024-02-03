@@ -8,6 +8,7 @@ module.exports = {
 	STATUS: {
 		CACHED: 'cached',
 		LOAD: 'load',
+        FAIL: 'fail',
 	},
 	MIME_TYPES: {
         html: 'text/html',

@@ -4,6 +4,8 @@ import { RENDER_CONSTANTS } from './constants.mjs'
 
 const { R_BOLD, R_ITALIC, R_STRIKE, R_IMG, R_URL } = RENDER_CONSTANTS.REGEXP
 const { GALLERY_CLOSE } = RENDER_CONSTANTS.HTMLS
+const { WORDING } = RENDER_CONSTANTS 
+
 const BOLD = 'bold'
 const EMPHASIS = 'emphasis'
 const STRIKE = 'strike'
@@ -36,7 +38,9 @@ const tagProcess = function(paragraph, tagType) {
     
     return result
 }
-
+/**
+ * @description обработать изображение или блок изображений
+ */
 const imageProcess = function(paragraph) {
 	let result = paragraph
     const images = result.match(R_IMG)
@@ -59,24 +63,29 @@ const imageProcess = function(paragraph) {
     }
     return result
 }
-
+/**
+ * 
+* @description обработать ссылку
+*/
 const urlProcess = function(paragraph) {
 	let result = paragraph
     const urls = result.match(R_URL)
 	const urlCount = urls?.length ?? 0
     if(urlCount) {
         for(let i = 0; i < urlCount; i++) {
-            let [ href, title ] = url[i].split(/\]\s*\{/)
+            let [ href, title ] = urls[i].split(/\]\s*\{/)
             href = href.slice(5)
             title = title.slice(0, -1)
-            _url = `<a href="${href}" target="_blank">${title}</a>`
+            const _url = `<a href="${href}" class="_link" target="_blank">${title}</a>`
             result = result.replace(urls[i], _url)
 
         }
     }
     return result
 }
-
+/**
+ * @description обработать параграф и встроенные в него элементы
+ */
 const processParagraph = function(paragraph) {
     let result = paragraph
     result = tagProcess(result, BOLD)
@@ -85,7 +94,7 @@ const processParagraph = function(paragraph) {
     result = imageProcess(result)
     result = urlProcess(result)
 		
-	return `<p>${result}</p>`
+	return `<p class="_paragraph">${result}</p>`
 }
 
 const processText = function(text) {
@@ -98,7 +107,9 @@ const processText = function(text) {
 	
 	return res
 }
-
+/**
+ * @description обработать блок тегов
+ */
 const processTags = function(tags) {
 	const tagSize = tags.length
 	let res = ''
@@ -109,17 +120,25 @@ const processTags = function(tags) {
 	
 	return `<div class="main-content__list-item-meta__tags">${res}</div>`
 }
+/**
+ * @description сформировать ссылку на полностраничный просмотр
+ */
+const processLink = function(ID) {
+    return `<div class="main-content__list-item-link__wrapper"><a class="main-content__list-item-link _link" href="/article/${ID}" target="_self">${WORDING.READ_MORE}</a></div>`
+}
 
 // const processAbout = function(about) {
 // 	const { author, datetime } = about
 // 	return `<span class="meta-info _datetime">${datetime}</span><span class="meta-info">${author}</span>`
 // }
 
-export const createPreview = function(preview) {
+export const createPreview = function(preview, showMore = false) {
 	const { header, content, meta } = preview
+    const readLink = showMore ? processLink(meta.ID) : ''
 	const _content = processText(content)
 	const _tags = processTags(meta.tags)
 	//const _about = processAbout(meta.about)
 	
-	return `<section class="main-content__list-item"><h3 class="main-content__list_item-header">${header}</h3><div class="main-content__list-item-text">${_content}</div><div class="main-content__list-item-meta">${_tags}</div></section>`
+	return `<section class="main-content__list-item"><h3 class="main-content__list_item-header">${header}</h3><div class="main-content__list-item-text">${_content}</div><div class="main-content__list-item-meta">${readLink}${_tags}</div></section>`
 }
+

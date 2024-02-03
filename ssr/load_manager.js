@@ -1,6 +1,7 @@
 'use strict'
 
 const { readFile } = require('fs').promises
+const { createReadStream } = require('fs')
 const { UTF8, STATUS, CACHE_EXPIRATION } = require('./constants.js')
 const { performance } = require('node:perf_hooks')
 
@@ -9,6 +10,7 @@ const LoadManager = function() {
 }
 /**
 * @description загрузить и кэшировать файл
+* @warning связка readFile/ return неадекватно работает с бинарниками
 */
 LoadManager.prototype.getFile = async function(path, relative, forced = false) {
 	const _path = relative ? `.${path}` : path
@@ -31,5 +33,28 @@ LoadManager.prototype.getFile = async function(path, relative, forced = false) {
 		return { content: null, status: code }
 	}
 }
+/**
+* @description получить медиафайл
+* @warning использует метод подгрузки из https://stackoverflow.com/questions/5823722/how-to-serve-an-image-using-nodejs
+*/
+LoadManager.prototype.getMedia = async function(path, response, type, relative = true) {
+	const _path = relative ? `.${path}` : path
+	var mediaStream = createReadStream(_path)
+
+	const result = new Promise((resolve, reject) => {
+		mediaStream.on('open', function () {
+			console.log('opened')
+			response.setHeader('Content-Type', type)
+			mediaStream.pipe(response);
+			resolve({ content: null, status: STATUS.LOAD })
+		});
+		mediaStream.on('error', function () {
+			console.log('failed')
+			reject({ content: null, status: STATUS.FAIL })
+		})
+	})
+
+	return await result
+}	
 
 module.exports = LoadManager
