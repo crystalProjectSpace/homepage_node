@@ -81,6 +81,10 @@ h4, h5, h6 {
 	line-height: 1.25rem;
 }
 
+a:hover, a:active, button:hover, b:focus, b:active {
+	cursor: url(../assets/cursor_active.svg), pointer;
+}
+
 body {
 	background-color:var(--bg-cl-main);
 	background-image: 
@@ -228,6 +232,7 @@ body {
 	color: var(--txt-cl-active);
 }
 
+
 ._link, ._link:visited {
 	color: var(--txt-cl-link);
 	transition: text-shadow 0.3s;
@@ -334,4 +339,23 @@ body {
 
 .main-content__list-item-link {
 	text-transform: uppercase;
+}
+
+.meta-preview-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: calc(var(--sidebar-width) - 32px);
+	height: 160px;
+	box-shadow: 0 0 0 1px var(--txt-cl-main);
+	padding: 16px;
+	background-color: #000;
+	margin-bottom: 16px;
+}
+
+._img-preview {
+	display: block;
+	object-fit: contain;
+	max-width: calc(var(--sidebar-width) - 64px);
+	max-height: 128px;
 }

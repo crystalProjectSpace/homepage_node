@@ -132,9 +132,9 @@ const processLink = function(ID) {
 // 	return `<span class="meta-info _datetime">${datetime}</span><span class="meta-info">${author}</span>`
 // }
 
-export const createPreview = function(preview, showMore = false) {
+export const createPreview = function(preview) {
 	const { header, content, meta } = preview
-    const readLink = showMore ? processLink(meta.ID) : ''
+    const readLink = processLink(meta.ID)
 	const _content = processText(content)
 	const _tags = processTags(meta.tags)
 	//const _about = processAbout(meta.about)
@@ -142,3 +142,18 @@ export const createPreview = function(preview, showMore = false) {
 	return `<section class="main-content__list-item"><h3 class="main-content__list_item-header">${header}</h3><div class="main-content__list-item-text">${_content}</div><div class="main-content__list-item-meta">${readLink}${_tags}</div></section>`
 }
 
+export const createArticle = function(preview) {
+    const { header, content, meta } = preview
+
+    const _content = processText(content)
+	const _tags = processTags(meta.tags)
+    let previewImg = ''
+    if(meta.preview_img) {
+        previewImg = `<div class="meta-preview-wrapper"><img class="_img-preview" src="/data/imgs/${meta.preview_img}" /></div>`
+    }
+
+    const articleHTML = `<section class="main-content__list-item"><div class="main-content__list-item-text">${_content}</div></section>`
+    const metaHTML = `<div class="main-content__list-item-meta"><h3 class="main-content__list_item-header">${previewImg}${header}</h3>${_tags}</div>`
+
+    return { articleHTML, metaHTML } 
+}

@@ -15,16 +15,20 @@
 						<span class="main-header-label__wording">Crystall-project test page</span>
 					</h1>
 					<nav class="main-header-nav">
-						<li class="main-header-nav__item"><a class="_link">Блог</a></li>
-						<li class="main-header-nav__item"><a class="_link">CellAuto</a></li>
-						<li class="main-header-nav__item"><a class="_link">Orbit</a></li>
+						<li class="main-header-nav__item">
+							<a class="_link" href="/" target="_self">На главную</a>
+						</li>
+						<li class="main-header-nav__item">
+							<a class="_link">CellAuto</a>
+							<a class="_link">Orbit</a>
+						</li>
 					</nav>
 				</header>
 				<div class="main-content">
 					<aside class="main-sidebar">
-						<div class="main-sidebar-item"></div>
+						<div class="main-sidebar-item" id="meta-socket"></div>
 					</aside>
-					<div class="main-content__article" id="content-socket"></div>
+					<div class="main-content__list" id="content-socket"></div>
 				</div>
 			</main>
 		</div>
@@ -33,15 +37,19 @@
 		</footer>
 		<script type="module">
 			'use strict'
-			import { createPreview } from '/script_client/renderer.mjs'
+			import { createArticle } from '/script_client/renderer.mjs'
 			import { getArticleContent } from '/script_client/content_loaders.mjs'
 			{
 				document.addEventListener('DOMContentLoaded', async () => {
 					const articleId = window.location.pathname.split('/').pop()
 					const content = await getArticleContent(articleId)
+
 					const previewSocket = document.getElementById('content-socket')
-					const temp = createPreview(JSON.parse(content))
-					previewSocket.innerHTML = temp
+					const metaSocket = document.getElementById('meta-socket')
+
+					const { articleHTML, metaHTML } = createArticle(JSON.parse(content))
+					previewSocket.innerHTML = articleHTML
+					metaSocket.innerHTML = metaHTML
 				})
 			}
 		</script>
