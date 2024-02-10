@@ -133,17 +133,18 @@ const processLink = function(ID) {
 // }
 
 export const createPreview = function(preview) {
-	const { header, content, meta } = preview
-    const readLink = processLink(meta.ID)
+
+
+	const { header, content, href, previewSrc, tags } = preview
+    const readLink = `<div class="main-content__list-item-link__wrapper"><a class="main-content__list-item-link _link" href="${href}" target="_self">${WORDING.READ_MORE}</a></div>`
 	const _content = processText(content)
-	const _tags = processTags(meta.tags)
-	//const _about = processAbout(meta.about)
+	const _tags = processTags(tags)
 	
-	return `<section class="main-content__list-item"><h3 class="main-content__list_item-header">${header}</h3><div class="main-content__list-item-text">${_content}</div><div class="main-content__list-item-meta">${readLink}${_tags}</div></section>`
+	return `<section class="main-content__list-item"><h3 class="main-content__list_item-header">${header}</h3><img class="_img" src="${previewSrc}" /><div class="main-content__list-item-text">${_content}</div><div class="main-content__list-item-meta">${readLink}${_tags}</div></section>`
 }
 
-export const createArticle = function(preview) {
-    const { header, content, meta } = preview
+export const createArticle = function(article) {
+    const { header, content, meta } = article
 
     const _content = processText(content)
 	const _tags = processTags(meta.tags)

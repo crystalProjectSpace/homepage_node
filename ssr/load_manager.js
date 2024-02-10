@@ -48,9 +48,12 @@ LoadManager.prototype.getMedia = async function(path, response, type, relative =
 			mediaStream.pipe(response);
 			resolve({ content: null, status: STATUS.LOAD })
 		});
-		mediaStream.on('error', function () {
-			console.log('failed')
-			reject({ content: null, status: STATUS.FAIL })
+		mediaStream.on('error', function (err) {
+			try {
+				reject({ content: null, status: STATUS.FAIL })
+			} catch(e) {
+				console.error(e)
+			}
 		})
 	})
 

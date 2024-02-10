@@ -89,12 +89,19 @@ const apiGetHandler = async function(url, response) {
 	const URLComponents = url.split('/').filter(Boolean)
 	const handle = URLComponents[POSITIONS.METHOD]
 	switch(handle) {
-		case 'article': 
-		const pageId = URLComponents[POSITIONS.PARAMS]
+		case 'article': {
+			const pageId = URLComponents[POSITIONS.PARAMS]
 			const { content } = await testGM.getPage(pageId)
 			response.writeHead(CODE.SUCCESS, { 'Content-type': 'application/json' })
 			response.end(content, UTF8 )
 			return;
+		}
+		case 'all-articles': {
+			const { content } = testGM.getPageList(url)
+			response.writeHead(CODE.SUCCESS, { 'Content-type': 'application/json' })
+			response.end(JSON.stringify(content), UTF8 )
+		}
+			
 		default: return;
 	}
 }
@@ -124,7 +131,9 @@ const requestHandler = (request, response) => {
 	}
 }
 
-const myServer = http.createServer(requestHandler)
-console.log(`test server run on port[${DEFAULT_PORT}]`)
-
-myServer.listen(DEFAULT_PORT)
+{
+	const myServer = http.createServer(requestHandler)
+	console.log(`test server run on port[${DEFAULT_PORT}]`)
+	
+	myServer.listen(DEFAULT_PORT)	
+}

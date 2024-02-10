@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "create-article-list": "node content_manager.js"
     },
     "engines": {
         "node": "16.x"

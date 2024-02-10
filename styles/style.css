@@ -316,6 +316,7 @@ body {
 
 ._img {
 	margin: 24px auto;
+	padding: 24px;
 	background-color: #000;
 	border-image: linear-gradient(0deg, var(--bg-cl-lighter), var(--txt-cl-active));
 	border-image-width: var(--gallery-border-width);

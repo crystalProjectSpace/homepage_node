@@ -49,11 +49,14 @@
 			'use strict'
 			import { createPreview } from './script_client/renderer.mjs'
 			import { MOCKUP_ARTICLES } from './script_client/mockup.mjs'
+			import { getArticleList } from './script_client/content_loaders.mjs'
 			{
-				document.addEventListener('DOMContentLoaded', () => {
+				document.addEventListener('DOMContentLoaded', async () => {
+					const articlesList = await getArticleList()
+					const articles = JSON.parse(articlesList)
 					const previewSocket = document.getElementById('content-preview-list')
 					let temp = ''
-					MOCKUP_ARTICLES.forEach(item => { temp += createPreview(item, true) })
+					articles.forEach(item => { temp += createPreview(item, true) })
 					previewSocket.innerHTML = temp
 				})
 			}
